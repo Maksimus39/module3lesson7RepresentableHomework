@@ -1,19 +1,14 @@
-//
-//  ContentView.swift
-//  module3lesson7RepresentableHomework
-//
-//  Created by Максим Минаков on 19.02.2026.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(CoreDataAppViewModel.self) var viewModel
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Image(viewModel.userImage)
+                .resizable()
+                .frame(width: 100, height: 100)
+            Text(viewModel.name)
         }
         .padding()
     }
@@ -21,4 +16,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environment(CoreDataAppViewModel())
 }
