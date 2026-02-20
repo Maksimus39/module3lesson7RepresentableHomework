@@ -8,7 +8,7 @@ struct ContentView: View {
             Image(viewModel.userImage)
                 .resizable()
                 .frame(width: 100, height: 100)
-            Text(viewModel.name)
+            Text(viewModel.me)
         }
         .padding()
     }

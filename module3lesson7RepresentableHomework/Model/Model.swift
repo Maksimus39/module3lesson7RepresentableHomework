@@ -2,6 +2,10 @@ import Foundation
 
 struct AppData: Identifiable {
     let id: String = UUID().uuidString
+    var data: Data
+}
+
+struct Data {
     let name: String
     let surname: String
     var userImage: String

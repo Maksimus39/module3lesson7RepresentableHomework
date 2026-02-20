@@ -1,70 +1,29 @@
 import Foundation
 
-@Observable
-class CoreDataAppViewModel {
+@Observable class CoreDataAppViewModel: CoreDataAppProtocol {
     let id: String = UUID().uuidString
-    var name: String = "Alexander"
-    var surname: String = "Nikolaevich"
-    var userImage: String = "russiaAlex2"
-    var me: String = """
-        Александр II (1818–1881) — император Всероссийский с 1855 года, сын Николая I, представитель династии Романовых. Его правление стало одним из самых значимых в XIX веке благодаря масштабным реформам, направленным на модернизацию России. Главное достижение — отмена крепостного права в 1861 году, освободившая более 20 миллионов крестьян и положившая начало социальному и экономическому обновлению страны.
-        Помимо этого, Александр II провёл судебную реформу (введение независимых судов, присяжных заседателей и гласности), земскую реформу (создание органов местного самоуправления — земств), военную реформу (введение всеобщей воинской повинности), а также реформы в образовании и городском управлении. Эти преобразования значительно укрепили гражданское общество и приблизили Россию к европейским стандартам.
-        Несмотря на либеральный курс, его правление сопровождалось ростом революционного движения. Радикалы считали реформы недостаточными, а консерваторы — чрезмерными. После нескольких неудачных покушений Александр II был убит террористами из организации «Народная воля» 1 марта 1881 года в Петербурге — буквально за два дня до подписания указа о создании представительного органа власти. Его смерть положила конец эпохе реформ и привела к усилению реакции при его преемнике Александре III.
-        """
-    var userPhotoProfile: [UserPhotoProfile] = [
-        UserPhotoProfile(image: "Aleksandr2_0"),
-        UserPhotoProfile(image: "Aleksandr2_1"),
-        UserPhotoProfile(image: "Aleksandr2_2"),
-        UserPhotoProfile(image: "Aleksandr2_3"),
-        UserPhotoProfile(image: "Aleksandr2_4"),
-        UserPhotoProfile(image: "Aleksandr2_5"),
-        UserPhotoProfile(image: "Aleksandr2_6"),
-        UserPhotoProfile(image: "Aleksandr2_7"),
-        UserPhotoProfile(image: "Aleksandr2_8"),
-        UserPhotoProfile(image: "Aleksandr2_9"),
-        UserPhotoProfile(image: "Aleksandr2_10"),
-    ]
-    var title: String = "Новости"
-    var news: [News] = [
-        News(image: "news_0",
-             text: "Окончание Крымской войны (1856): Подписание Парижского мира."),
-        News(image: "news_1",
-             text: "Ликвидация военных поселений (1857): Отмена системы, созданной при Александре I."),
-        News(image: "news_2",
-             text: "Отмена крепостного права (19 февраля 1861): Манифест об освобождении крестьян."),
-        News(image: "news_3",
-             text: "Создание Государственного банка (1860): Часть финансовой реформы."),
-        News(image: "news_4",
-             text: "Университетская реформа (1863): Возвращение автономии университетам."),
-        News(image: "news_5",
-             text: "Земская реформа (1864): Введение местного самоуправления в губерниях."),
-        News(image: "news_6",
-             text: "Судебная реформа (1864): Введение суда присяжных, состязательности сторон."),
-        News(image: "news_7",
-             text: "Цензурная реформа (1865): Ослабление предварительной цензуры."),
-        News(image: "news_8",
-             text: "Окончательное покорение Кавказа (1864): Завершение Кавказской войны."),
-        News(image: "news_9",
-             text: "Продажа Аляски (Русской Америки) США (1867)."),
-        News(image: "news_10",
-             text: "Реформа городского самоуправления (1870): Создание городских дум."),
-        News(image: "news_11",
-             text: "Военная реформа (1874): Введение всеобщей воинской повинности."),
-        News(image: "news_12",
-             text: "Присоединение Средней Азии (1860-е–1870-е): Взятие Ташкента (1865), Самарканда (1868)."),
-        News(image: "news_13",
-             text: "«Союз трех императоров» (1873): Дипломатический союз России, Германии и Австро-Венгрии."),
-        News(image: "news_14",
-             text: "Русско-турецкая война (1877–1878): Освобождение Болгарии."),
-        News(image: "news_15",
-             text: "Берлинский конгресс (1878): Пересмотр итогов русско-турецкой войны."),
-        News(image: "news_16",
-             text: "Покушение Д. Каракозова (1866): Первое из череды покушений на императора."),
-        News(image: "news_17",
-             text: "Начало деятельности «Народной воли» (1879): Активизация революционного террора."),
-        News(image: "news_18",
-             text: "Создание Верховной распорядительной комиссии (1880): Попытка борьбы с террором под руководством Лорис-Меликова."),
-        News(image: "news_19",
-             text: "Убийство Александра II (1 марта 1881): Террористы «Народной воли» смертельно ранили императора.")
-    ]
+    var name: String = ""
+    var surname: String = ""
+    var userImage: String = ""
+    var me: String = ""
+    var userPhotoProfile: [UserPhotoProfile] = []
+    var title: String = ""
+    var news: [News] = []
+    
+    private let dataManager = DataManager()
+    
+    init() {
+        loadData()
+    }
+    
+    func loadData() {
+        let data = dataManager.getData()
+        self.name = data.name
+        self.surname = data.surname
+        self.userImage = data.userImage
+        self.me = data.me
+        self.userPhotoProfile = data.userPhotoProfile
+        self.title = data.title
+        self.news = data.news
+    }
 }
