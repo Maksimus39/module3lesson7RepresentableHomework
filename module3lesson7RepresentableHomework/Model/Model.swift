@@ -2,10 +2,11 @@ import Foundation
 
 struct AppData: Identifiable {
     let id: String = UUID().uuidString
-    var data: Data
+    var data: UserProfileData
+    var isEditing: Bool = false
 }
 
-struct Data {
+struct UserProfileData {
     let name: String
     let surname: String
     var userImage: String

@@ -2,6 +2,7 @@ import Foundation
 
 @Observable class CoreDataAppViewModel: CoreDataAppProtocol {
     let id: String = UUID().uuidString
+    var isEditing: Bool = false
     var name: String = ""
     var surname: String = ""
     var userImage: String = ""

@@ -1,8 +1,7 @@
-import Foundation
 
 class DataManager {
-    func getData() -> Data {
-        return Data(name: "Alexander",
+    func getData() -> UserProfileData {
+        return UserProfileData(name: "Alexander",
                       surname: "Nikolaevich",
                       userImage: "Image-80",
                       me: """

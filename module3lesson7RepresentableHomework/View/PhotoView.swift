@@ -24,11 +24,12 @@ struct ContentPhotoView: View {
             ForEach(viewModel.userPhotoProfile, id: \.id) { p in
                 if let _ = UIImage(named: p.image) {
                     Image(p.image)
-                       .resizable()
-                       .frame(height: 190)
-                       .cornerRadius(20)
+                        .resizable()
+                        .frame(height: 190)
+                        .cornerRadius(20)
                 }
             }
         }
     }
 }
+

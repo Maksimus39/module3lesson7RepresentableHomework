@@ -3,10 +3,17 @@ import SwiftUI
 struct ContentView: View {
     @Environment(CoreDataAppViewModel.self) var viewModel
     
+    private var isEditingBinding: Binding<Bool> {
+        Binding(
+            get: { viewModel.isEditing },
+            set: { viewModel.isEditing = $0 }
+        )
+    }
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: true) {
             VStack(spacing: 52) {
-                VStack (spacing: 39){
+                VStack(spacing: 39) {
                     VStack(alignment: .center, spacing: 19) {
                         UIImageRepresentableView()
                             .frame(width: 80, height: 80)
@@ -22,7 +29,7 @@ struct ContentView: View {
                             .padding(.vertical, 20)
                             .padding(.horizontal, 14)
                             .font(.system(size: 12, weight: .light))
-                            .background(.textcolor)
+                            .background(Color.textcolor)
                             .cornerRadius(14)
                     }
                     
@@ -32,36 +39,21 @@ struct ContentView: View {
                     }
                 }
                 
-                UIButtonRepresentable()
-                    .frame(height: 59)
-                    .padding(.bottom, 56)
+                UIButtonRepresentable(title: "История правления") {
+                    viewModel.isEditing = true
+                }
+                .frame(height: 59)
+                .padding(.bottom, 56)
             }
             .padding(20)
-            Spacer()
         }
-        
+        .navigationDestination(isPresented: isEditingBinding) {
+            TableUIKitRepresentableView()
+                .environment(viewModel)
+                .navigationTitle(viewModel.name +  " " + viewModel.surname)
+        }
     }
 }
-
-
-struct UIButtonRepresentable: UIViewRepresentable {
-    func makeUIView(context: Context) -> UIButton {
-        {
-            $0.setTitle("Редактировать", for: .normal)
-            $0.setTitleColor(.white, for: .normal)
-            $0.backgroundColor = .buttoncolor
-            $0.layer.cornerRadius = 20
-            return $0
-        }(UIButton())
-    }
-    
-    func updateUIView(_ uiView: UIButton, context: Context) {
-       //
-    }
-}
-
-
-
 
 
 #Preview {

@@ -6,8 +6,10 @@ struct module3lesson7RepresentableHomeworkApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(viewModel)
+            NavigationStack {
+                ContentView()
+                    .environment(viewModel)
+            }
         }
     }
 }

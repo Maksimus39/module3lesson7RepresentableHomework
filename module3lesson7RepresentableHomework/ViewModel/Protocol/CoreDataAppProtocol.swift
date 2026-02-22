@@ -1,5 +1,6 @@
 protocol CoreDataAppProtocol {
     var id: String { get }
+    var isEditing: Bool { get set }
     var name: String { get set }
     var surname: String { get set }
     var userImage: String { get set}
